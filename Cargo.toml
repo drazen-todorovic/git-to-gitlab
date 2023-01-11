@@ -1,0 +1,27 @@
+[package]
+name = "gtogl"
+version = "0.1.0"
+edition = "2021"
+description = "The tool for the migration from any Git repository to GitLab"
+
+[dependencies]
+tokio = { version = "1.23", features = ["rt", "rt-multi-thread", "fs", "macros"] }
+clap = { version = "4.0.32", features = ["cargo"] }
+serde = { version = "1.0.152", features = ["derive", "rc"] }
+serde_json = "1.0.91"
+serde_yaml = "0.9.16"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
+anyhow = "1.0"
+chrono = "0.4.23"
+reqwest = { version = "0.11.13", default-features = false, features = ["json", "rustls-tls-native-roots"] }
+walkdir = "2.3.2"
+aws-config = "0.52.0"
+aws-sdk-codecommit = "0.22.0"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
